@@ -43,15 +43,14 @@ workflows:
         - unity # <-- (Includes UNITY_HOME, UNITY_SERIAL, UNITY_USERNAME, UNITY_PASSWORD)
       vars:
         UNITY_BIN: $UNITY_HOME/Contents/MacOS/Unity
-        BUILD_SCRIPT: BuildMac
+        BUILD_SCRIPT: BuildWindows
     scripts:
       - name: Activate License
         script: $UNITY_BIN -batchmode -quit -logFile -serial ${UNITY_SERIAL?} -username ${UNITY_USERNAME?} -password ${UNITY_PASSWORD?}
       - name: Build
-        script: $UNITY_BIN -batchmode -quit -logFile -projectPath . -executeMethod BuildScript.BuildMac -nographics
+        script: $UNITY_BIN -batchmode -quit -logFile -projectPath . -executeMethod BuildScript.BuildWindows -nographics
     artifacts:
-      - "mac/*.app"
-      - ${TEST_REPORT_PATH}
+      - "windows/*"
     publishing:
       scripts:
         - name: Deactivate License
