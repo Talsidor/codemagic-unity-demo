@@ -1,6 +1,8 @@
+#if UNITY_IOS
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.iOS.Xcode;
+
 using System.IO;
 
 public class IosBuildPostprocessor
@@ -25,3 +27,4 @@ public class IosBuildPostprocessor
         File.WriteAllText(plistPath, plist.WriteToString());
     }
 }
+#endif
