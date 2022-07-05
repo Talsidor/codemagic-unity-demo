@@ -43,13 +43,10 @@ workflows:
         - unity # <-- (Includes UNITY_HOME, UNITY_SERIAL, UNITY_USERNAME, UNITY_PASSWORD)
       vars:
         UNITY_BIN: $UNITY_HOME/Contents/MacOS/Unity
-        TEST_REPORT_PATH: tests.xml
+		BUILD_SCRIPT: BuildMac
     scripts:
       - name: Activate License
         script: $UNITY_BIN -batchmode -quit -logFile -serial ${UNITY_SERIAL?} -username ${UNITY_USERNAME?} -password ${UNITY_PASSWORD?}
-      - name: Run Unit Tests
-        script: $UNITY_BIN -batchmode -executeMethod Runner.RunUnitTests -logFile -nographics -projectPath . -testsOutput ${TEST_REPORT_PATH}
-        test_report: ${TEST_REPORT_PATH}
       - name: Build
         script: $UNITY_BIN -batchmode -quit -logFile -projectPath . -executeMethod BuildScript.BuildMac -nographics
     artifacts:
